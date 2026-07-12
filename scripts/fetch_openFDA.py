@@ -2,6 +2,7 @@ import sys
 import requests
 from db import get_connection
 from normalize import normalize
+from side_effects import extract_and_save_side_effects
 def fetch_drug_label(drug_name, attempt=1, max_attempts=3):
     if attempt > max_attempts:
         print(f"Max attempts reached for drug: {drug_name}")
@@ -72,6 +73,10 @@ def fetch_drug_label(drug_name, attempt=1, max_attempts=3):
     print("Purpose:", best_result.get("purpose", ["N/A"])[0])
     print("Warnings:", best_result.get("warnings", ["N/A"])[0])
     print("Drug Interactions:", best_result.get("drug_interactions", ["N/A"])[0])
+    print("Adverse Reactions:", best_result.get("adverse_reactions", ["N/A"])[0])
+    adverse_text = best_result.get("adverse_reactions", [""])[0]
+    if adverse_text:
+        extract_and_save_side_effects(drug_name, adverse_text)
     
 
     cursor.execute(
