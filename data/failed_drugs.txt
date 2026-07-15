@@ -1,0 +1,716 @@
+abametapir (topical)
+abarelix
+abciximab
+acenocoumarol
+acetaminophen
+acetohexamide
+acetylcholine
+acetylsalicylic acid
+acrivastine
+activated charcoal
+acyclovir (topical)
+adapalene (topical)
+adenosine
+albiglutide
+alclometasone (topical)
+aldesleukin
+alefacept
+alendronic acid
+alfentanil
+alimemazine
+alitretinoin (topical)
+aloe vera leaf
+altretamine
+aluminum hydroxide
+ambenonium
+amikacin (liposome)
+aminobenzoic acid
+aminoglutethimide
+aminolevulinic acid (topical)
+aminosalicylic acid
+ammonium chloride
+amobarbital
+amphotericin b (cholesteryl sulfate)
+amphotericin b (lipid complex)
+amphotericin b (liposomal)
+amprenavir
+amrinone
+amyl nitrite
+anisindione
+anistreplase
+anthrax vaccine
+antihemophilic factor, human recombinant
+antilymphocyte immunoglobulin (horse)
+antithrombin alfa
+antithrombin iii human
+antithymocyte immunoglobulin (rabbit)
+aprotinin
+arbutamine
+ardeparin
+arsenic trioxide
+artesunate
+asparaginase escherichia coli
+astemizole
+atropine (ophthalmic)
+attapulgite
+aurothioglucose
+azatadine
+azelaic acid (topical)
+azelastine (nasal)
+azelastine (ophthalmic)
+bacampicillin
+bacillus calmette-guerin substrain tice live antigen
+bacitracin
+beclomethasone dipropionate (nasal)
+belladonna
+bendroflumethiazide
+benzalkonium (topical)
+benzatropine
+benzocaine (topical)
+benzthiazide
+benzylpenicillin
+benzylpenicillin (potassium)
+benzylpenicillin (sodium)
+bepridil
+betamethasone (topical)
+betaxolol (ophthalmic)
+betrixaban
+bexarotene (topical)
+bifidobacterium longum infantis
+biperiden
+bisacodyl
+bismuth subgallate
+bismuth subsalicylate
+boceprevir
+botulinum toxin type b
+bretylium
+brexanolone
+brimonidine (ophthalmic)
+brimonidine (topical)
+brinzolamide (ophthalmic)
+bromotheophylline
+budesonide (nasal)
+bupivacaine (liposome)
+butabarbital
+caffeine
+calcipotriol
+calcipotriol (topical)
+calcitriol (topical)
+calcium carbonate
+calcium glubionate anhydrous
+calcium glucoheptonate
+calcium glycerophosphate
+calcium lactate
+calcium phosphate
+candida albicans
+capreomycin
+capromab pendetide
+capsicum
+carbamoylcholine (ophthalmic)
+carbenicillin
+carteolol (ophthalmic)
+castor oil
+cefalotin
+cefamandole
+cefapirin
+cefditoren
+cefmetazole
+cefonicid
+cefoperazone
+cefradine
+ceftibuten
+ceftizoxime
+cerivastatin
+cetirizine
+cetylpyridinium (topical)
+chamomile
+chenodeoxycholic acid
+chloral hydrate
+chloramphenicol (ophthalmic)
+chloramphenicol (otic)
+chlorcyclizine
+chlorhexidine
+chlormezanone
+chlorphenesin
+chlorpheniramine
+chlorpropamide
+choline salicylate
+chondroitin sulfate
+chorionic gonadotropin (human)
+chromium picolinate
+ciclesonide (nasal)
+cinchocaine (topical)
+cinoxacin
+cisapride
+clavulanic acid
+clindamycin (topical)
+clioquinol (topical)
+clobetasol (topical)
+clocortolone (topical)
+clofazimine
+clofedanol
+clofibrate
+clomifene
+clorazepic acid
+clostridium tetani toxoid antigen (formaldehyde inactivated)
+clove
+cloxacillin
+coagulation factor ix human
+coal tar (topical)
+cocaine (nasal)
+cocaine (topical)
+coenzyme m
+collagenase clostridium histolyticum (topical)
+conestat alfa
+conivaptan
+conjugated estrogens (topical)
+copanlisib
+copper gluconate
+copper oxodotreotide cu-64
+cranberry
+creatine
+cromoglicic acid
+cyclandelate
+cyclizine
+cyclopentolate (ophthalmic)
+cytarabine (liposomal)
+daclatasvir
+dalfopristin
+danaparoid
+dapsone (topical)
+dasabuvir
+daunorubicin (liposomal)
+deferoxamine
+dehydrocholic acid
+delavirdine
+demecarium (ophthalmic)
+deserpidine
+desirudin
+desonide (topical)
+desoximetasone (topical)
+dexamethasone (nasal)
+dexamethasone (ophthalmic)
+dexamethasone (topical)
+dexbrompheniramine
+dexfenfluramine
+dextran (-1)
+dextran (high molecular weight)
+dextran (low molecular weight)
+dextromethorphan
+dextropropoxyphene
+dextrose, unspecified form
+dextrothyroxine
+dezocine
+diamorphine
+dichloralphenazone
+diclofenac (ophthalmic)
+diclofenac (topical)
+diclofenamide
+dicoumarol
+didanosine
+dienestrol (topical)
+diethylstilbestrol
+diflorasone (topical)
+digitoxin
+digoxin immune fab (ovine)
+dihydrotachysterol
+diiodohydroxyquinoline
+dimenhydrinate
+dimercaprol
+dinoprostone (topical)
+diphenhydramine (topical)
+dipivefrin (ophthalmic)
+docusate
+dolasetron
+doripenem
+dorzolamide (ophthalmic)
+doxacurium
+doxepin (topical)
+doxorubicin (liposomal)
+doxycycline (topical)
+doxylamine
+drotrecogin alfa
+dyphylline
+echinacea
+echothiophate (ophthalmic)
+econazole (topical)
+edetate calcium disodium anhydrous
+edetate disodium anhydrous
+edrophonium
+efalizumab
+enflurane
+enfuvirtide
+enoxacin
+ephedrine (nasal)
+epinephrine (ophthalmic)
+epinephrine (topical)
+eprosartan
+ergoloid mesylate
+ergometrine
+estradiol (topical)
+estramustine
+estrone
+estrone sulfate
+estrone sulfate (topical)
+etacrynic acid
+ethanol
+ethchlorvynol
+ethinylestradiol
+ethionamide
+ethotoin
+etidocaine
+etidronic acid
+ezogabine
+factor ix complex (human)
+factor xiii (human)
+fenoldopam
+ferrous gluconate
+ferrous sulfate anhydrous
+ferumoxides
+ferumoxsil
+fexofenadine
+fibrinogen human
+flax seed
+fludeoxyglucose (18f)
+flunisolide (nasal)
+fluocinonide
+fluorometholone (ophthalmic)
+fluoxymesterone
+flurandrenolide (topical)
+flurbiprofen (ophthalmic)
+fluticasone (nasal)
+fluticasone (topical)
+fospropofol
+frangula purshiana bark
+gadobenic acid
+gadofosveset trisodium
+gadopentetic acid
+gadoteric acid
+gadoversetamide
+gadoxetic acid
+galactose
+gallium chloride ga-67
+gallium nitrate
+gamma-aminobutyric acid
+garlic
+gemifloxacin
+gentamicin (topical)
+ginger
+ginkgo biloba
+ginseng
+glycerin
+glycopyrronium (topical)
+goldenseal
+gonadorelin
+grepafloxacin
+guanabenz
+guanadrel
+guanethidine
+guanidine
+halazepam
+halofantrine
+halothane
+heparin (flush)
+hepatitis a vaccine
+hepatitis b vaccine (recombinant)
+hexachlorophene (topical)
+histamine
+homatropine (ophthalmic)
+human adenovirus e serotype 4 strain cl-68578 antigen
+human c1-esterase inhibitor
+human cytomegalovirus immune globulin
+human immunoglobulin g (intramuscular)
+human immunoglobulin g (intravenous and subcutaneous)
+human immunoglobulin g (intravenous)
+human immunoglobulin g (subcutaneous)
+human papillomavirus type 11 l1 capsid protein antigen
+human rho(d) immune globulin
+hyaluronic acid
+hydrocortisone (ophthalmic)
+hydrocortisone (topical)
+hydroflumethiazide
+hydroxyamphetamine (ophthalmic)
+imiquimod (topical)
+indacaterol
+indinavir
+influenza a virus a/california/7/2009 (h1n1)-like antigen (propiolactone inactivated)
+influenza a virus a/vietnam/1194/2004 (h5n1) antigen (formaldehyde inactivated)
+inotersen
+insulin aspart (aspart protamine)
+insulin aspart (aspart)
+insulin human (inhalation, rapid acting)
+insulin human (isophane)
+insulin human (regular)
+insulin human (zinc extended)
+insulin human (zinc)
+insulin lispro (protamine)
+interferon alfa-2a, recombinant
+interferon alfa-2b
+interferon alfa-n1
+interferon alfa-n3
+interferon alfacon-1
+inulin
+iobenguane (i-131)
+iodine (topical)
+iodipamide
+iopanoic acid
+iopodic acid
+iothalamic acid
+ioxilan
+ipecac
+ipratropium (nasal)
+irinotecan (liposomal)
+iron protein succinylate
+isoetharine
+isoflurophate (ophthalmic)
+isometheptene
+isoprenaline
+isoxsuprine
+ivermectin (topical)
+kanamycin
+kaolin
+kava
+ketorolac (ophthalmic)
+ketotifen
+lactic acid
+lactitol
+lactobacillus acidophilus
+lefamulin
+lepirudin
+lesinurad
+levacetylmethadol
+levamisole
+levmetamfetamine (nasal)
+levobetaxolol (ophthalmic)
+levobunolol (ophthalmic)
+levobupivacaine
+levomefolic acid (calcium)
+levonordefrin
+levosalbutamol
+licorice
+lidocaine (ophthalmic)
+lidocaine (topical)
+lindane
+liotrix
+lomefloxacin
+loracarbef
+loratadine
+lorcaserin
+loteprednol (ophthalmic)
+lyme disease vaccine (recombinant ospa)
+magaldrate
+magnesium carbonate
+magnesium citrate
+magnesium gluconate
+magnesium glycinate
+magnesium hydroxide
+magnesium oxide
+manganese (sulfate)
+maprotiline
+mazindol
+measles virus vaccine live attenuated
+mecasermin rinfabate
+meclofenamic acid
+mecobalamin
+medrysone (ophthalmic)
+melatonin
+melphalan flufenamide
+meningococcal polysaccharide vaccine group c
+mepenzolate
+mephentermine
+mephenytoin
+mepyramine
+mesalazine
+mesoridazine
+mestranol
+metamfetamine
+metaraminol
+methdilazine
+methenamine
+methionine
+methotrimeprazine
+methoxamine
+methoxsalen (topical)
+methoxyflurane
+methyl aminolevulinate (topical)
+methyl salicylate (topical)
+methylcellulose
+methylergometrine
+methylphenobarbital
+methylprednisolone (topical)
+methysergide
+meticillin
+metipranolol (ophthalmic)
+metocurine
+mezlocillin
+miconazole
+miconazole (topical)
+microcrystalline cellulose
+midostaurin
+milk thistle
+mineral oil
+minocycline (topical)
+minoxidil (topical)
+mipomersen
+mivacurium
+monopotassium phosphate
+moricizine
+morphine (liposomal)
+moxetumomab pasudotox
+mumps virus strain b level jeryl lynn live antigen
+muromonab
+nalidixic acid
+naphazoline (nasal)
+naphazoline (ophthalmic)
+necitumumab
+nedocromil
+neomycin
+neomycin (topical)
+nepafenac (ophthalmic)
+nesiritide
+netilmicin
+niclosamide
+nicotinamide
+nicotine
+nitrazepam
+nitrous acid
+nitrous oxide
+norfloxacin
+novobiocin
+obeticholic acid
+octasulfur (topical)
+olaratumab
+olopatadine
+olopatadine (nasal)
+omacetaxine mepesuccinate
+omega-3 fatty acids
+oprelvekin
+orciprenaline
+orphenadrine
+oxamniquine
+oxandrolone
+oxitriptan
+oxtriphylline
+oxybuprocaine (ophthalmic)
+oxygen
+oxymetazoline (nasal)
+oxymetazoline (ophthalmic)
+oxymetazoline (topical)
+oxymetholone
+oxyquinoline (topical)
+oxytetracycline
+oxytocin
+pamidronic acid
+pancuronium
+panobinostat
+papaya
+paraldehyde
+paramethadione
+parathyroid hormone
+paritaprevir
+pectin
+pegademase
+pegaptanib (ophthalmic)
+peginesatide
+peginterferon alfa-2b
+pemoline
+penbutolol
+penciclovir (topical)
+pentoxyverine
+pergolide
+pfizer-biontech covid-19 vaccine
+phenacemide
+phenazopyridine
+phenindamine
+phenolphthalein
+phenoxymethylpenicillin
+phensuximide
+phenylbutazone
+phenylbutyric acid
+phenylephrine
+phenylephrine (nasal)
+phenylephrine (ophthalmic)
+phenylephrine (otic)
+phenylephrine (topical)
+phenylpropanolamine
+phenyltoloxamine
+phylloquinone
+physostigmine (ophthalmic)
+picosulfuric acid
+pilocarpine (ophthalmic)
+pimecrolimus (topical)
+pipecuronium
+piperazine
+pirbuterol
+plantago seed
+plicamycin
+poliovirus type 1 antigen (formaldehyde inactivated)
+polyethylene glycol (3350 with electrolytes)
+polyethylene glycol (3350)
+polymyxin b
+polythiazide
+potassium gluconate
+potassium iodide
+potassium perchlorate
+prasterone enantate
+prednicarbate (topical)
+prednisolone (ophthalmic)
+prilocaine (topiclal)
+probucol
+procyclidine
+progesterone (topical)
+promazine
+propantheline
+proparacaine (ophthalmic)
+propiomazine
+propylhexedrine (nasal)
+protein c
+pyrantel
+pyrophosphoric acid
+quinestrol
+quinupristin
+racepinephrine
+ranitidine (bismuth citrate)
+rapacuronium
+reserpine
+resorcinol (topical)
+retapamulin (topical)
+reteplase
+rifampicin
+rifamycin
+rimexolone (ophthalmic)
+risedronic acid
+ritodrine
+rofecoxib
+rosiglitazone
+rotavirus vaccine
+rubella virus vaccine
+salbutamol
+salicylic acid (sodium)
+salicylic acid (topical)
+salmon calcitonin
+samarium (153sm) lexidronam
+saquinavir
+saw palmetto
+scopolamine (ophthalmic)
+secobarbital
+secretin human
+selenium
+selenium sulfide
+sermorelin
+sibutramine
+silver (topical)
+silver nitrate (ophthalmic)
+silver nitrate (topical)
+silver sulfadiazine (topical)
+simeprevir
+simethicone
+smallpox (vaccinia) vaccine, live
+sodium aurothiomalate
+sodium cellulose phosphate
+sodium glycerophosphate
+sodium phosphate, monobasic
+sodium phosphate, monobasic (p32)
+somatotropin
+somatrem
+sorbitol
+sparfloxacin
+spectinomycin
+st. john's wort
+stanozolol
+stavudine
+streptokinase
+streptozocin
+strontium chloride sr-89
+sulfacetamide (ophthalmic)
+sulfadoxine
+sulfamethizole
+sulfinpyrazone
+sulfisoxazole
+suprofen (ophthalmic)
+tacrine
+tazarotene (topical)
+tegaserod
+telaprevir
+telbivudine
+telithromycin
+teniposide
+terfenadine
+testolactone
+testosterone (topical)
+tetracaine (ophthalmic)
+tetracaine (topical)
+tetracosactide
+tetracycline (topical)
+tetraferric tricitrate decahydrate
+tetryzoline (nasal)
+tetryzoline (ophthalmic)
+thiabendazole
+thiethylperazine
+thimerosal (topical)
+thiopental
+thyrotropin alfa
+ticarcillin
+ticlopidine
+tiludronic acid
+timolol (ophthalmic)
+tinzaparin
+tioconazole
+tioguanine
+tocainide
+tolazamide
+tolazoline
+tolbutamide
+tolevamer
+torasemide
+tositumomab
+tositumomab (i-131)
+tretinoin (topical)
+triamcinolone (nasal)
+triamcinolone (ophthalmic)
+triamcinolone (topical)
+trichlormethiazide
+trichophyton mentagrophytes
+triethylenetetramine
+trifarotene (topical)
+triflupromazine
+trimethadione
+trimethaphan
+trimetrexate
+trioxsalen
+tripelennamine
+triprolidine
+troglitazone
+troleandomycin
+tropicamide (ophthalmic)
+trovafloxacin
+tryptophan
+tubocurarine
+turmeric
+typhoid vaccine (inactivated)
+typhoid vaccine (live)
+tyropanoic acid
+ulobetasol (topical)
+uracil mustard
+urofollitropin
+urokinase
+ursodeoxycholic acid
+valaciclovir
+valdecoxib
+valerian
+varicella zoster vaccine (recombinant)
+vibrio cholerae cvd 103-hgr strain live antigen
+vibrio cholerae cvd 103-hgr strain live antigen (live)
+vincristine (liposome)
+vitamin e
+von willebrand factor human
+vorapaxar
+xylometazoline (nasal)
+yellow fever vaccine
+yohimbine
+zalcitabine
+zinc acetate
+zinc chloride
+zinc gluconate
+zinc sulfate
+zopiclone

@@ -2,7 +2,7 @@ from db import get_connection
 from normalize import normalize
 
 def get_drug_id(cursor, name):
-    cursor.execute("SELECT id FROM drugs WHERE name = %s", (name.lower(),))
+    cursor.execute("SELECT id FROM drugs WHERE name = LOWER(%s)", (name,))
     row = cursor.fetchone()
     cursor.fetchall()
     return row[0] if row else None

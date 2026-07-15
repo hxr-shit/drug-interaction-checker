@@ -75,6 +75,9 @@ def fetch_drug_label(drug_name, attempt=1, max_attempts=3):
     print("Drug Interactions:", best_result.get("drug_interactions", ["N/A"])[0])
     print("Adverse Reactions:", best_result.get("adverse_reactions", ["N/A"])[0])
     adverse_text = best_result.get("adverse_reactions", [""])[0]
+    if not adverse_text:
+        adverse_text= best_result.get("warnings", [""])[0]
+        
     if adverse_text:
         extract_and_save_side_effects(drug_name, adverse_text)
     

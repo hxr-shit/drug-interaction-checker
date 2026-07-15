@@ -1,5 +1,5 @@
 from db import get_connection
-
+from groq_client import groq_complete
 # The 27 MedDRA SOC names — same as what you seeded into organs table
 MEDDRA_SOCS = [
     "Blood and lymphatic system disorders",
@@ -37,7 +37,7 @@ def get_organ_id(cursor, organ_name):
     return row[0] if row else None
 
 def get_drugs_id(cursor, drug_name):
-    cursor.execute("SELECT id FROM drugs WHERE name = %s", (drug_name.lower(),))
+    cursor.execute("SELECT id FROM drugs WHERE name = LOWER(%s)", (drug_name,))
     row = cursor.fetchone()
     return row[0] if row else None
 
@@ -62,37 +62,61 @@ def parse_meddra_from_text(raw_text):
                 })
     return results
 
-def gemini_extract_side_effects(drug_name, raw_text):
-    """Fallback — ask Gemini to extract structured side effects."""
-    import os
-    from google import genai
-    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+def groq_extract_side_effects(drug_name, raw_text):
+    from groq_client import groq_complete
+    import json
     
     prompt = f"""Extract side effects from this drug label for "{drug_name}":
 
 {raw_text[:3000]}
 
 Return ONLY a JSON array. Each item must have:
-- "organ_system": use ONLY one of these exact names: {', '.join(MEDDRA_SOCS[:10])}... (MedDRA SOC names)
-- "effect": specific side effect (max 50 words)
+- "organ_system": use ONLY MedDRA SOC names like "Gastrointestinal disorders", "Nervous system disorders" etc.
+- "effect": specific side effect
 - "frequency": one of "very common", "common", "rare", "unknown"
 
 Return max 15 items. No other text, just the JSON array."""
 
-    response = client.models.generate_content(
-        model="gemini-2.5-flash",
-        contents=prompt
-    )
-    
-    import json
     try:
-        text = response.text.strip()
+        text = groq_complete(prompt)
         text = text.replace('```json', '').replace('```', '').strip()
         return json.loads(text)
-    except:
+    except Exception as e:
+        print(f"Groq parse error for {drug_name}: {e}")
         return []
 
-def extract_and_save_side_effects(drug_name, raw_adverse_text):
+def parse_json_socs(raw_output):
+    """
+    Parse Groq's JSON response into the same shape the rest of this
+    function expects: [{"organ_system": ..., "effect": ..., "frequency": ...}, ...]
+    Returns [] on any parse failure rather than raising, so one bad
+    response doesn't kill the bulk loop.
+    """
+    import json
+    if not raw_output:
+        return []
+    text = raw_output.strip()
+    text = text.replace('```json', '').replace('```', '').strip()
+    try:
+        parsed = json.loads(text)
+    except json.JSONDecodeError:
+        print(f"Could not parse Groq response as JSON: {text[:200]}")
+        return []
+
+    if not isinstance(parsed, list):
+        return []
+
+    # Defensive: if the model ignores instructions and returns plain
+    # strings instead of dicts, don't crash the downstream .get() calls.
+    cleaned = []
+    for item in parsed:
+        if isinstance(item, dict):
+            cleaned.append(item)
+        elif isinstance(item, str):
+            cleaned.append({"organ_system": item, "effect": "", "frequency": "unknown"})
+    return cleaned
+
+def extract_and_save_side_effects(drug_name, raw_adverse_text, meddra_only=False):
     """Main function — MedDRA parse first, Gemini fallback."""
     connect, cursor = get_connection()
     
@@ -105,13 +129,25 @@ def extract_and_save_side_effects(drug_name, raw_adverse_text):
     # try MedDRA parsing first
     extracted = parse_meddra_from_text(raw_adverse_text)
     source = "meddra_parse"
-    
-    # fallback to Gemini if MedDRA parse found nothing
+
     if not extracted:
-        print(f"MedDRA parse failed for {drug_name}, falling back to Gemini...")
-        extracted = gemini_extract_side_effects(drug_name, raw_adverse_text)
-        source = "gemini"
-    
+        if meddra_only:
+            print(f"Skipping {drug_name} - no MedDRA SOCs found")
+            cursor.close(); connect.close()
+            return
+        source = "groq_fallback"
+        prompt = f"""Extract side effects from this drug label for "{drug_name}":
+
+{raw_adverse_text[:3000]}
+
+Return ONLY a JSON array. Each item must have:
+- "organ_system": use ONLY one of these exact names: {', '.join(MEDDRA_SOCS)}
+- "effect": specific side effect (max 50 words)
+- "frequency": one of "very common", "common", "rare", "unknown"
+
+Return max 15 items. No other text, just the JSON array."""
+        raw_output = groq_complete(prompt)
+        extracted = parse_json_socs(raw_output)
     print(f"Extracted {len(extracted)} side effects for {drug_name} via {source}")
     
     for item in extracted:
@@ -147,3 +183,17 @@ def extract_and_save_side_effects(drug_name, raw_adverse_text):
     connect.commit()
     cursor.close()
     connect.close()
+
+
+
+
+
+
+
+
+
+
+
+    #else:
+    ##       extracted = gemini_extract_side_effects(drug_name, raw_adverse_text)
+      #      source = "gemini"
