@@ -1,3 +1,8 @@
+import json
+import re
+
+from matplotlib import text
+
 from db import get_connection
 from groq_client import groq_complete
 # The 27 MedDRA SOC names — same as what you seeded into organs table
@@ -66,17 +71,32 @@ def groq_extract_side_effects(drug_name, raw_text):
     from groq_client import groq_complete
     import json
     
-    prompt = f"""Extract side effects from this drug label for "{drug_name}":
+    prompt = f"""
+    Extract side effects from this drug label for "{drug_name}".
 
-{raw_text[:3000]}
+    {raw_text[:8000]}
 
-Return ONLY a JSON array. Each item must have:
-- "organ_system": use ONLY MedDRA SOC names like "Gastrointestinal disorders", "Nervous system disorders" etc.
-- "effect": specific side effect
-- "frequency": one of "very common", "common", "rare", "unknown"
+    Return ONLY valid JSON.
 
-Return max 15 items. No other text, just the JSON array."""
+    Output format:
 
+    [
+        {{
+            "organ_system": "Cardiac disorders",
+            "effect": "Bradycardia",
+            "frequency": "common"
+        }}
+    ]
+
+    Rules:
+    - No markdown
+    - No explanations
+    - No text before or after the JSON
+    - "organ_system" must be one of:
+    {', '.join(MEDDRA_SOCS)}
+
+    Return at most 15 objects.
+    """
     try:
         text = groq_complete(prompt)
         text = text.replace('```json', '').replace('```', '').strip()
@@ -96,11 +116,25 @@ def parse_json_socs(raw_output):
     if not raw_output:
         return []
     text = raw_output.strip()
-    text = text.replace('```json', '').replace('```', '').strip()
+    text = text.replace("```json", "").replace("```", "").strip()
+
+    match= re.search(r"\[[\s\S]*\]", text)
+
+    if not match:
+        print("Length:", len(text))
+        print(text)
+        print(f"No JSON array found:\n{text[:300]}")
+        return []
+
+    json_text = match.group(0)
+
     try:
-        parsed = json.loads(text)
-    except json.JSONDecodeError:
-        print(f"Could not parse Groq response as JSON: {text[:200]}")
+        parsed = json.loads(json_text)
+
+    except json.JSONDecodeError as e:
+        print(f"\nJSON ERROR: {e}")
+        print("\nRAW RESPONSE:")
+        print(text)
         return []
 
     if not isinstance(parsed, list):
@@ -138,15 +172,30 @@ def extract_and_save_side_effects(drug_name, raw_adverse_text, meddra_only=False
         source = "groq_fallback"
         prompt = f"""Extract side effects from this drug label for "{drug_name}":
 
-{raw_adverse_text[:3000]}
+{raw_adverse_text[:2000]}
 
-Return ONLY a JSON array. Each item must have:
+Return ONLY valid JSON.
+
+Do not explain.
+Do not use markdown.
+Do not use ```json.
+Do not write any text before or after the array.
+
+Example:
+
+[
+ {{
+   "organ_system":"Cardiac disorders",
+   "effect":"Bradycardia",
+   "frequency":"common"
+}}
+]. Each item must have:
 - "organ_system": use ONLY one of these exact names: {', '.join(MEDDRA_SOCS)}
 - "effect": specific side effect (max 50 words)
 - "frequency": one of "very common", "common", "rare", "unknown"
 
-Return max 15 items. No other text, just the JSON array."""
-        raw_output = groq_complete(prompt)
+Return at most 8 items. Choose the most clinically important side effects. No other text, just the JSON array."""
+        raw_output = groq_complete(prompt, max_tokens=1024)
         extracted = parse_json_socs(raw_output)
     print(f"Extracted {len(extracted)} side effects for {drug_name} via {source}")
     

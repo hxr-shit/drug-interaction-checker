@@ -10,7 +10,7 @@ def get_client():
         _client = Groq(api_key=os.environ["GROQ_API_KEY"])
     return _client
 #llama-3.3-70b-versatile
-def groq_complete(prompt, model="llama-3.1-8b-instant", max_tokens=512, temperature=0, retries=2):
+def groq_complete(prompt, model="llama-3.1-8b-instant", max_tokens=1024, temperature=0, retries=2):
     """Simple wrapper with basic 429 backoff for the bulk run."""
     client = get_client()
     for attempt in range(retries + 1):
