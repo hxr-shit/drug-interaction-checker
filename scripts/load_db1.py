@@ -36,16 +36,6 @@ def save_failed_list(path, failed_names):
 
 # ---------------------------------------------------------------------
 
-import re
-
-def strip_route_suffix(drug_name):
-    """DDInter names bake the route of administration into the name itself,
-    e.g. 'abametapir (topical)', 'dexamethasone (ophthalmic)'. OpenFDA's
-    generic_name field only has the bare ingredient, so a literal quoted
-    search on the full DDInter name never matches. Strip the trailing
-    parenthetical before querying OpenFDA."""
-    return re.sub(r'\s*\([^)]*\)\s*$', '', drug_name).strip()
-
 def get_all_drugs():
     connect, cursor = get_connection()
     cursor.execute("SELECT id, name FROM drugs")
@@ -64,7 +54,6 @@ def bulk_load_zero_side_effects():
         FROM drugs d
         LEFT JOIN side_effects se ON d.id = se.drugs_id
         WHERE se.id IS NULL
-        ORDER BY d.name
     """)
     rows = cursor.fetchall()
     cursor.close()
@@ -165,53 +154,38 @@ def already_has_side_effects(drug_id):
 
 def fetch_adverse_reactions(drug_name):
     """Fetch from OpenFDA, return raw adverse_reactions text or None."""
-    query_name = strip_route_suffix(drug_name)
     url = "https://api.fda.gov/drug/label.json"
     params = {
-        "search": f'openfda.generic_name:"{query_name}"',
+        "search": f'openfda.generic_name:"{drug_name}"',
         "limit": 5
     }
-    api_key = os.getenv("OPENFDA_API_KEY")
-    if api_key:
-        params["api_key"] = api_key
-
-    for attempt in range(3):
-        try:
-            response = requests.get(url, params=params, timeout=10)
-            if response.status_code == 429:
-                wait = 5 * (attempt + 1)
-                print(f"  [OpenFDA] {drug_name}: rate limited (429), waiting {wait}s...")
-                time.sleep(wait)
-                continue
-            if response.status_code != 200:
-                print(f"  [OpenFDA] {drug_name}: HTTP {response.status_code} - {response.text[:150]}")
-                return None
-            data = response.json()
-            if "results" not in data or not data["results"]:
-                print(f"  [OpenFDA] {drug_name}: no results for generic_name match")
-                return None
-
-            # pick best result — prefer one with drug_interactions populated
-            best = None
-            for result in data["results"]:
-                if result.get("drug_interactions"):
-                    best = result
-                    break
-            if best is None:
-                best = data["results"][0]
-
-            adverse = best.get("adverse_reactions", [""])[0]
-            if not adverse:
-                print(f"  [OpenFDA] {drug_name}: matched but no adverse_reactions field")
-            return adverse if adverse else None
-
-        except Exception as e:
-            print(f"  [OpenFDA] {drug_name}: EXCEPTION {type(e).__name__}: {e}")
+    try:
+        response = requests.get(url, params=params, timeout=10)
+        if response.status_code != 200:
+            print(f"  [OpenFDA] {drug_name}: HTTP {response.status_code} - {response.text[:150]}")
             return None
-
-    # exhausted retries, still rate limited
-    print(f"  [OpenFDA] {drug_name}: gave up after repeated 429s")
-    return None
+        data = response.json()
+        if "results" not in data or not data["results"]:
+            print(f"  [OpenFDA] {drug_name}: no results for generic_name match")
+            return None
+        
+        # pick best result — prefer one with drug_interactions populated
+        best = None
+        for result in data["results"]:
+            if result.get("drug_interactions"):
+                best = result
+                break
+        if best is None:
+            best = data["results"][0]
+        
+        adverse = best.get("adverse_reactions", [""])[0]
+        if not adverse:
+            print(f"  [OpenFDA] {drug_name}: matched but no adverse_reactions field")
+        return adverse if adverse else None
+    
+    except Exception as e:
+        print(f"  [OpenFDA] {drug_name}: EXCEPTION {type(e).__name__}: {e}")
+        return None
 
 def bulk_load():
     failed_path = "data/failed_drugs.txt"
