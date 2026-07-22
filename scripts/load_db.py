@@ -183,6 +183,12 @@ def fetch_adverse_reactions(drug_name):
                 print(f"  [OpenFDA] {drug_name}: rate limited (429), waiting {wait}s...")
                 time.sleep(wait)
                 continue
+            if response.status_code == 404:
+                from normalize import check_db  # import only check_db, not full normalize()
+                normalized = check_db(drug_name)  # DB lookup only, zero API cost
+                if normalized and normalized.lower() != drug_name.lower():
+                    return fetch_adverse_reactions(normalized)  # retry with USAN name
+            
             if response.status_code != 200:
                 print(f"  [OpenFDA] {drug_name}: HTTP {response.status_code} - {response.text[:150]}")
                 return None
@@ -202,7 +208,12 @@ def fetch_adverse_reactions(drug_name):
 
             adverse = best.get("adverse_reactions", [""])[0]
             if not adverse:
-                print(f"  [OpenFDA] {drug_name}: matched but no adverse_reactions field")
+                adverse= best.get("warnings", [""])[0]
+            if not adverse:
+                from normalize import normalize
+                normalized = normalize(drug_name)
+                if normalized and normalized.lower() != drug_name.lower():
+                    return fetch_adverse_reactions(normalized)
             return adverse if adverse else None
 
         except Exception as e:
@@ -270,7 +281,7 @@ def bulk_load():
 
 if __name__ == "__main__":
     print("Select mode:")
-    print("1 - Full bulk load (MedDRA only, no Gemini/Groq)")
+    print("1 - Full bulk load (MedDRA only, no Groq)")
     print("2 - Fix drugs with 0 side effects (uses Groq)")
     print("3 - Retry failed drugs (uses Groq)")
     mode = input("Enter 1, 2 or 3: ").strip()

@@ -6,7 +6,7 @@ from db import get_connection
 def check_db(drug_name):
     connect, cursor= get_connection()
     cursor.execute(
-        "SELECT generic_name FROM brand_mapping WHERE brand_name= %s",
+        "SELECT generic_name FROM brand_mapping WHERE LOWER(brand_name)= LOWER(%s)",
         (drug_name.lower(),)
     )
 
