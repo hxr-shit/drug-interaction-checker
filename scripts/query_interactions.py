@@ -1,46 +1,34 @@
 from db import get_connection
 from normalize import normalize
+from explain import build_explanation, groq_explain, save_explanation, get_organ_effects, ORGAN_PLAIN_LANGUAGE
+
 
 def get_drug_id(cursor, name):
-    cursor.execute("SELECT id FROM drugs WHERE name = LOWER(%s)", (name,))
+    cursor.execute("SELECT id FROM drugs WHERE LOWER(name) = LOWER(%s)", (name,))
     row = cursor.fetchone()
     cursor.fetchall()
     return row[0] if row else None
 
 def get_drug_organs(cursor, drug_id):
     cursor.execute("""
-        SELECT
-            o.name,
-            se.effect
+        SELECT DISTINCT o.name, se.effect
         FROM side_effects se
-        JOIN organs o
-            ON se.organ_id = o.id
+        JOIN organs o ON se.organ_id = o.id
         WHERE se.drugs_id = %s
         ORDER BY o.name, se.effect
     """, (drug_id,))
-
     rows = cursor.fetchall()
-
     organs = {}
-
     for organ, effect in rows:
         organs.setdefault(organ, []).append(effect)
+    return [{"organ": organ, "effects": effects} for organ, effects in organs.items()]
 
-    return [
-        {
-            "organ": organ,
-            "effects": effects
-        }
-        for organ, effects in organs.items()
-    ]
-
-def check_interaction(drug_a, drug_b):
+def check_interaction(drug_a, drug_b, explain_mode="template"):
     connect, cursor = get_connection()
     
     id_a = get_drug_id(cursor, drug_a)
     id_b = get_drug_id(cursor, drug_b)
 
-    # try normalizing if not found directly
     if id_a is None:
         normalized = normalize(drug_a)
         if normalized:
@@ -55,7 +43,9 @@ def check_interaction(drug_a, drug_b):
         return {"found": False, "reason": "one or both drugs not recognized"}
     
     cursor.execute(
-        "SELECT severity, mechanism, raw_text FROM interactions WHERE (drug_a_id=%s AND drug_b_id=%s) OR (drug_a_id=%s AND drug_b_id=%s)",
+        """SELECT id, severity, mechanism, raw_text, explanation 
+           FROM interactions 
+           WHERE (drug_a_id=%s AND drug_b_id=%s) OR (drug_a_id=%s AND drug_b_id=%s)""",
         (id_a, id_b, id_b, id_a)
     )
     result = cursor.fetchone()
@@ -64,33 +54,64 @@ def check_interaction(drug_a, drug_b):
     drug_a_organs = get_drug_organs(cursor, id_a)
     drug_b_organs = get_drug_organs(cursor, id_b)
 
-    a_names = {
-        item["organ"]
-        for item in drug_a_organs
-    }
+    a_names = {item["organ"] for item in drug_a_organs}
+    b_names = {item["organ"] for item in drug_b_organs}
+    shared_organs = sorted(list(a_names & b_names))
 
-    b_names = {
-        item["organ"]
-        for item in drug_b_organs
-    }
-
-    shared_organs = sorted(
-        list(a_names & b_names)
-    )
-
+    shared_organ_details = []
+    for organ in shared_organs:
+        effects_a = get_organ_effects(cursor, id_a, organ)
+        effects_b = get_organ_effects(cursor, id_b, organ)
+        shared_organ_details.append({
+            "organ": organ,
+            "plain_name": ORGAN_PLAIN_LANGUAGE.get(organ, organ),
+            drug_a: effects_a,
+            drug_b: effects_b
+        })
+    
     cursor.close(); connect.close()
     
     if result:
-        return {"found": True,
-        "severity": result[0],
-        "mechanism": result[1],
-        "raw_text": result[2],
+        interaction_id = result[0]
+        severity = result[1]
+        cached_explanation = result[4]
+
+        if explain_mode == "groq":
+            if cached_explanation:
+                explanation = cached_explanation
+                explanation_source = "cached"
+            else:
+                explanation = groq_explain(drug_a, drug_b, severity, shared_organ_details)
+                save_explanation(interaction_id, explanation)
+                explanation_source = "groq"
+        else:
+            explanation = build_explanation(drug_a, drug_b, severity, shared_organ_details)
+            explanation_source = "template"
+
+        return {
+            "found": True,
+            "severity": severity,
+            "mechanism": result[2],
+            "raw_text": result[3],
+            "drug_a_organs": drug_a_organs,
+            "drug_b_organs": drug_b_organs,
+            "shared_organs": shared_organs,
+            "shared_organ_details": shared_organ_details,
+            "explanation": explanation,
+            "explanation_source": explanation_source
+        }
+
+    explanation = build_explanation(drug_a, drug_b, "none", shared_organ_details)
+    return {
+        "found": False,
+        "reason": "no known interaction in database",
         "drug_a_organs": drug_a_organs,
         "drug_b_organs": drug_b_organs,
-        "shared_organs": shared_organs}    
-    return {"found": False, "reason": "no known interaction in database", "drug_a_organs": drug_a_organs,
-    "drug_b_organs": drug_b_organs,
-    "shared_organs": shared_organs}
+        "shared_organs": shared_organs,
+        "shared_organ_details": shared_organ_details,
+        "explanation": explanation,
+        "explanation_source": "template"
+    }
 
 if __name__ == "__main__":
     a = input("Drug A: ")

@@ -25,9 +25,12 @@ app = Flask(__name__)
 def check():
     drug_a = request.args.get('drug_a')
     drug_b = request.args.get('drug_b')
+    explain_mode = request.args.get('explain', 'template')  # default: template
+    
     if not drug_a or not drug_b:
-        return jsonify({"error": "provide drug_a and drug_b as query params"}), 400
-    result = check_interaction(drug_a, drug_b)
+        return jsonify({"error": "provide drug_a and drug_b"}), 400
+    
+    result = check_interaction(drug_a, drug_b, explain_mode=explain_mode)
     return jsonify(result)
 
 if __name__ == '__main__':

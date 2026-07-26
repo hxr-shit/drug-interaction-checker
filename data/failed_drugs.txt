@@ -3,11 +3,9 @@ abarelix
 abciximab
 acenocoumarol
 acetohexamide
-acetylsalicylic acid
 acrivastine
 albiglutide
 alefacept
-alendronic acid
 alfentanil
 alimemazine
 altretamine
@@ -40,7 +38,6 @@ bacillus calmette-guerin substrain tice live antigen
 bendroflumethiazide
 benzatropine
 benzthiazide
-benzylpenicillin
 benzylpenicillin (potassium)
 benzylpenicillin (sodium)
 bepridil
@@ -73,7 +70,6 @@ cefradine
 ceftibuten
 ceftizoxime
 cerivastatin
-chenodeoxycholic acid
 chloral hydrate
 chlormezanone
 chlorphenesin
@@ -85,7 +81,6 @@ clavulanic acid
 clofazimine
 clofedanol
 clofibrate
-clomifene
 clorazepic acid
 clostridium tetani toxoid antigen (formaldehyde inactivated)
 cloxacillin
@@ -95,7 +90,6 @@ conestat alfa
 conivaptan
 copanlisib
 copper oxodotreotide cu-64
-cromoglicic acid
 cyclandelate
 cyclizine
 daclatasvir
@@ -209,7 +203,6 @@ iron protein succinylate
 isoetharine
 isoflurophate (ophthalmic)
 isometheptene
-isoprenaline
 isoxsuprine
 kanamycin
 kava
@@ -224,7 +217,6 @@ levamisole
 levobetaxolol (ophthalmic)
 levobupivacaine
 levonordefrin
-levosalbutamol
 lindane
 liotrix
 lomefloxacin
@@ -246,7 +238,6 @@ mepenzolate
 mephentermine
 mephenytoin
 mepyramine
-mesalazine
 mesoridazine
 mestranol
 metamfetamine
@@ -298,7 +289,6 @@ oxybuprocaine (ophthalmic)
 oxygen
 oxymetholone
 oxytetracycline
-pamidronic acid
 pancuronium
 panobinostat
 paraldehyde
@@ -315,7 +305,6 @@ pergolide
 pfizer-biontech covid-19 vaccine
 phenacemide
 phenindamine
-phenoxymethylpenicillin
 phensuximide
 phenylbutazone
 phenylbutyric acid
@@ -347,16 +336,13 @@ rapacuronium
 reserpine
 retapamulin (topical)
 reteplase
-rifampicin
 rifamycin
 rimexolone (ophthalmic)
-risedronic acid
 ritodrine
 rofecoxib
 rosiglitazone
 rotavirus vaccine
 rubella virus vaccine
-salbutamol
 salmon calcitonin
 samarium (153sm) lexidronam
 saquinavir
@@ -409,7 +395,6 @@ tolazamide
 tolazoline
 tolbutamide
 tolevamer
-torasemide
 tositumomab
 tositumomab (i-131)
 trichlormethiazide
@@ -429,8 +414,6 @@ ulobetasol (topical)
 uracil mustard
 urofollitropin
 urokinase
-ursodeoxycholic acid
-valaciclovir
 valdecoxib
 varicella zoster vaccine (recombinant)
 vibrio cholerae cvd 103-hgr strain live antigen
