@@ -6,7 +6,9 @@ sys.path.append(os.path.dirname(__file__))
 from db import get_connection
 
 SEVERITY_KEYWORDS = {
-    "high": ["contraindicated", "avoid", "do not use", "fatal", "life-threatening", "serious bleeding", "major"],
+    "high": ["contraindicated", "avoid", "do not use", "fatal", "life-threatening", 
+             "serious bleeding", "major", "increase the risk of bleeding", 
+             "increased risk of bleeding"],
     "moderate": ["caution", "monitor closely", "reduce dose", "significant", "moderate"],
     "low": ["minor", "monitor", "observe", "minimal"]
 }
@@ -34,8 +36,9 @@ def fetch_openfda_interactions_text(drug_name):
         if best is None:
             best = data["results"][0]
         
-        return best.get("drug_interactions", [""])[0] or None
-    except:
+        text = best.get("drug_interactions", [""])[0]
+        return text or None    
+    except Exception as e:
         return None
 
 def extract_relevant_paragraph(interactions_text, drug_b_name):
@@ -55,7 +58,8 @@ def extract_relevant_paragraph(interactions_text, drug_b_name):
     if not relevant:
         return None
     
-    return " ".join(relevant[:3])  # max 3 sentences
+    relevant.sort(key=len)
+    return relevant[0][:300]
 
 def infer_severity(text):
     """Infer severity from keyword matching."""

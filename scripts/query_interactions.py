@@ -50,7 +50,20 @@ def check_interaction(drug_a, drug_b, explain_mode="template"):
     )
     result = cursor.fetchone()
     cursor.fetchall()
-    
+
+    # DDInter missed — try OpenFDA fallback
+    if not result:
+        from openfda_interactions import query_openfda_interaction
+        openfda_result = query_openfda_interaction(drug_a, drug_b)
+        if openfda_result:
+            result = (
+                None,                           # id
+                openfda_result["severity"],     # severity
+                openfda_result["mechanism"],    # mechanism
+                openfda_result["raw_text"],     # raw_text
+                None                            # cached explanation
+            )
+            
     drug_a_organs = get_drug_organs(cursor, id_a)
     drug_b_organs = get_drug_organs(cursor, id_b)
 
@@ -102,6 +115,8 @@ def check_interaction(drug_a, drug_b, explain_mode="template"):
         }
 
     explanation = build_explanation(drug_a, drug_b, "none", shared_organ_details)
+
+    
     return {
         "found": False,
         "reason": "no known interaction in database",
