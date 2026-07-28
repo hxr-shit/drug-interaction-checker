@@ -1,0 +1,275 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * Drug Interaction & Organ Safety Checker — biomedical design system.
+ * Navy / midnight / deep indigo-blue surfaces, slate text, cyan accents.
+ * Dark mode is the primary experience. No purple / violet / pink / magenta.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 8px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ring-offset-background: var(--background);
+
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-cyan: var(--cyan);
+  --color-cyan-soft: var(--cyan-soft);
+  --color-safe: var(--safe);
+  --color-minor: var(--minor);
+  --color-moderate: var(--moderate);
+  --color-major: var(--major);
+  --color-critical: var(--critical);
+
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 1.25rem;
+
+  --background: oklch(0.985 0.004 240);
+  --foreground: oklch(0.22 0.035 258);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.22 0.035 258);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.22 0.035 258);
+  --primary: oklch(0.55 0.14 240);
+  --primary-foreground: oklch(0.99 0.005 240);
+  --secondary: oklch(0.955 0.011 246);
+  --secondary-foreground: oklch(0.3 0.04 256);
+  --muted: oklch(0.955 0.011 246);
+  --muted-foreground: oklch(0.52 0.028 254);
+  --accent: oklch(0.94 0.03 220);
+  --accent-foreground: oklch(0.28 0.05 245);
+  --destructive: oklch(0.55 0.2 25);
+  --destructive-foreground: oklch(0.99 0.005 240);
+  --border: oklch(0.9 0.012 248);
+  --input: oklch(0.9 0.012 248);
+  --ring: oklch(0.62 0.12 220);
+
+  --surface: oklch(0.99 0.004 240 / 0.72);
+  --surface-elevated: oklch(1 0 0 / 0.85);
+  --cyan: oklch(0.63 0.12 214);
+  --cyan-soft: oklch(0.63 0.12 214 / 0.14);
+
+  --safe: oklch(0.6 0.14 158);
+  --minor: oklch(0.66 0.12 190);
+  --moderate: oklch(0.72 0.14 75);
+  --major: oklch(0.6 0.18 35);
+  --critical: oklch(0.53 0.21 22);
+
+  --chart-1: oklch(0.6 0.14 235);
+  --chart-2: oklch(0.66 0.12 200);
+  --chart-3: oklch(0.6 0.14 158);
+  --chart-4: oklch(0.72 0.14 75);
+  --chart-5: oklch(0.57 0.2 25);
+
+  --sidebar: oklch(0.975 0.006 244);
+  --sidebar-foreground: oklch(0.28 0.035 256);
+  --sidebar-primary: oklch(0.55 0.14 240);
+  --sidebar-primary-foreground: oklch(0.99 0.005 240);
+  --sidebar-accent: oklch(0.93 0.02 226);
+  --sidebar-accent-foreground: oklch(0.28 0.05 245);
+  --sidebar-border: oklch(0.9 0.012 248);
+  --sidebar-ring: oklch(0.62 0.12 220);
+}
+
+.dark {
+  --background: oklch(0.165 0.035 258);
+  --foreground: oklch(0.965 0.008 240);
+  --card: oklch(0.225 0.038 260);
+  --card-foreground: oklch(0.965 0.008 240);
+  --popover: oklch(0.215 0.038 260);
+  --popover-foreground: oklch(0.965 0.008 240);
+  --primary: oklch(0.78 0.13 205);
+  --primary-foreground: oklch(0.17 0.04 258);
+  --secondary: oklch(0.27 0.04 260);
+  --secondary-foreground: oklch(0.94 0.01 240);
+  --muted: oklch(0.27 0.04 260);
+  --muted-foreground: oklch(0.72 0.028 250);
+  --accent: oklch(0.32 0.055 245);
+  --accent-foreground: oklch(0.95 0.01 240);
+  --destructive: oklch(0.62 0.19 24);
+  --destructive-foreground: oklch(0.98 0.005 240);
+  --border: oklch(0.85 0.05 235 / 0.14);
+  --input: oklch(0.85 0.05 235 / 0.18);
+  --ring: oklch(0.78 0.13 205);
+
+  --surface: oklch(0.26 0.045 258 / 0.55);
+  --surface-elevated: oklch(0.3 0.05 258 / 0.7);
+  --cyan: oklch(0.82 0.13 200);
+  --cyan-soft: oklch(0.82 0.13 200 / 0.16);
+
+  --safe: oklch(0.75 0.16 160);
+  --minor: oklch(0.8 0.12 195);
+  --moderate: oklch(0.8 0.14 78);
+  --major: oklch(0.7 0.18 40);
+  --critical: oklch(0.65 0.21 22);
+
+  --chart-1: oklch(0.7 0.14 240);
+  --chart-2: oklch(0.82 0.13 200);
+  --chart-3: oklch(0.75 0.16 160);
+  --chart-4: oklch(0.8 0.14 78);
+  --chart-5: oklch(0.65 0.21 22);
+
+  --sidebar: oklch(0.195 0.038 258);
+  --sidebar-foreground: oklch(0.93 0.01 240);
+  --sidebar-primary: oklch(0.78 0.13 205);
+  --sidebar-primary-foreground: oklch(0.17 0.04 258);
+  --sidebar-accent: oklch(0.28 0.05 250);
+  --sidebar-accent-foreground: oklch(0.95 0.01 240);
+  --sidebar-border: oklch(0.85 0.05 235 / 0.12);
+  --sidebar-ring: oklch(0.78 0.13 205);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.03em;
+  }
+}
+
+@utility glass {
+  background: var(--surface);
+  backdrop-filter: blur(22px) saturate(150%);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, white 8%, transparent) inset,
+    0 24px 60px -24px oklch(0.1 0.05 258 / 0.55);
+}
+
+@utility glass-strong {
+  background: var(--surface-elevated);
+  backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid var(--border);
+  box-shadow:
+    0 1px 0 0 color-mix(in oklab, white 10%, transparent) inset,
+    0 32px 80px -30px oklch(0.1 0.05 258 / 0.6);
+}
+
+@utility hover-lift {
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.35s ease;
+  &:hover {
+    transform: translateY(-4px);
+    border-color: color-mix(in oklab, var(--cyan) 45%, transparent);
+  }
+}
+
+@utility text-gradient {
+  background: linear-gradient(
+    100deg,
+    var(--foreground) 10%,
+    color-mix(in oklab, var(--cyan) 85%, var(--foreground)) 60%,
+    var(--foreground) 95%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility grid-fade {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--cyan) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--cyan) 12%, transparent) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent 75%);
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes dash-flow {
+  to {
+    stroke-dashoffset: -24;
+  }
+}
+
+@utility animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+@utility animate-pulse-glow {
+  animation: pulse-glow 3.2s ease-in-out infinite;
+}

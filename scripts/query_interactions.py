@@ -63,7 +63,58 @@ def check_interaction(drug_a, drug_b, explain_mode="template"):
                 openfda_result["raw_text"],     # raw_text
                 None                            # cached explanation
             )
+
+    # Groq fallback if DDInter and OpenFDA both missed
+    if not result:
+        from groq_client import groq_complete
+        import json
+
+        prompt = f"""Drug interaction between {drug_a} and {drug_b}.
+
+Respond with ONLY this exact JSON, no nesting, no extra fields:
+{{"severity": "low", "mechanism": "one sentence explanation"}}
+
+severity must be exactly one of: high, moderate, low, none
+mechanism must be a single plain sentence."""
+
+        try:
+            response = groq_complete(prompt, max_tokens=150)
+            response = response.replace('```json', '').replace('```', '').strip()
+            groq_data = json.loads(response)
+        
+            severity = groq_data.get("severity", "moderate")
+            mechanism = groq_data.get("mechanism", "")
+            if not severity or not mechanism:
+        # dig into nested structure
+                for v in groq_data.values():
+                    if isinstance(v, dict):
+                        for v2 in v.values():
+                            if isinstance(v2, dict):
+                                for v3 in v2.values():
+                                    if isinstance(v3, dict):
+                                        severity = severity or v3.get("severity")
+                                        mechanism = mechanism or v3.get("mechanism")
+    
+            severity = severity or "moderate"
+            mechanism = mechanism or ""
+
+            if mechanism:  # ADD THIS BLOCK
+                connect2, cursor2 = get_connection()
+                cursor2.execute(
+                    """INSERT IGNORE INTO interactions 
+                    (drug_a_id, drug_b_id, severity, mechanism, raw_text)
+                    VALUES (%s, %s, %s, %s, %s)""",
+                    (id_a, id_b, severity, mechanism, "groq:generated")
+                )
+                connect2.commit()
+                cursor2.close()
+                connect2.close()
             
+                result = (None, severity, mechanism, "groq:generated", None)
+    
+        except Exception as e:
+            print(f"Groq interaction fallback failed: {e}")
+
     drug_a_organs = get_drug_organs(cursor, id_a)
     drug_b_organs = get_drug_organs(cursor, id_b)
 
