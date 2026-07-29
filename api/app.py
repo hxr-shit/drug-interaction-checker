@@ -3,7 +3,9 @@ import sys
 import importlib.util
 
 from flask import Flask, request, jsonify
-
+from flask_cors import CORS
+app = Flask(__name__)
+CORS(app)
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SCRIPTS_DIR = os.path.join(ROOT_DIR, "scripts")
 

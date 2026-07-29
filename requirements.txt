@@ -3,6 +3,8 @@ requests
 mysql-connector-python
 python-dotenv
 google-genai
+groq
+gunicorn
 
 optional-->
 annotated-doc==0.0.4
