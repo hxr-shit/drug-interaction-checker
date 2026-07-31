@@ -4,8 +4,6 @@ import { ArrowRight, Activity, HeartPulse, Workflow, FileText } from "lucide-rea
 import { Navbar } from "@/components/site/navbar";
 import { MolecularField } from "@/components/site/molecular-field";
 import { SearchCard } from "@/components/site/search-card";
-import { FEATURED_PAIRS } from "@/lib/interactions/data";
-import { severityMeta } from "@/lib/interactions/types";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -115,21 +113,10 @@ function Index() {
           </motion.div>
 
           <div className="mt-10 flex flex-wrap items-center gap-2">
-            <span className="text-xs text-muted-foreground">Try a curated pair:</span>
-            {FEATURED_PAIRS.map((p) => (
-              <Link
-                key={`${p.a}-${p.b}`}
-                to="/checker"
-                search={{ a: p.a, b: p.b }}
-                className="group inline-flex items-center gap-2 rounded-full border border-border bg-secondary/35 px-3 py-1.5 text-xs transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/50"
-              >
-                <span
-                  className="h-1.5 w-1.5 rounded-full"
-                  style={{ background: severityMeta[p.severity].color }}
-                />
-                {p.a} + {p.b}
-              </Link>
-            ))}
+            <span className="text-xs text-muted-foreground">Featured drug pairs</span>
+            <span className="rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs text-yellow-400">
+              In Progress
+            </span>
           </div>
         </div>
       </section>
