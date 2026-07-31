@@ -2,7 +2,6 @@ import { useNavigate } from "@tanstack/react-router";
 import { ArrowLeftRight, Clock, Search, Sparkles } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { POPULAR_DRUGS } from "@/lib/interactions/data";
 import { searchDrugs } from "@/lib/interactions/api";
 import { cn } from "@/lib/utils";
 
@@ -201,18 +200,9 @@ export function SearchCard({ compact = false }: { compact?: boolean }) {
             <p className="mb-2 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-muted-foreground">
               Popular drugs
             </p>
-            <div className="flex flex-wrap gap-1.5">
-              {POPULAR_DRUGS.map((d) => (
-                <button
-                  key={d}
-                  type="button"
-                  onClick={() => (a ? setB(d) : setA(d))}
-                  className="rounded-full border border-border bg-secondary/40 px-3 py-1 text-xs text-muted-foreground transition-all duration-300 hover:-translate-y-0.5 hover:border-primary/50 hover:text-foreground"
-                >
-                  {d}
-                </button>
-              ))}
-            </div>
+            <p className="rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs text-yellow-400">
+              In Progress
+            </p>
           </div>
           <div className="min-w-0">
             <p className="mb-2 flex items-center gap-1.5 text-[0.68rem] font-medium uppercase tracking-[0.18em] text-muted-foreground">
