@@ -152,6 +152,7 @@ export function OrganCards({
       <div className="grid gap-2 sm:grid-cols-2">
         {result.socImpacts.map((impact) => {
           const soc = getSoc(impact.socId);
+          if (!soc) return;
           const isOpen = open === impact.socId;
           return (
             <div

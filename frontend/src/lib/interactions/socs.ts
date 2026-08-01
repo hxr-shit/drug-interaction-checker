@@ -239,8 +239,13 @@ export const SOCS: Soc[] = [
 
 export const socById = new Map(SOCS.map((s) => [s.id, s]));
 
-export function getSoc(id: string): Soc {
-  const soc = socById.get(id);
-  if (!soc) throw new Error(`Unknown SOC: ${id}`);
+export function getSoc(name: string): SOC | null {
+  const soc = SOCS[name];
+
+  if (!soc) {
+    console.warn(`Unknown SOC: ${name}`);
+    return null;
+  }
+
   return soc;
 }
