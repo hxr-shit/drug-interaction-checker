@@ -13,7 +13,7 @@ export async function fetchInteraction(
   rawA: string,
   rawB: string
 ): Promise<InteractionResult> {
-  const response = await fetch("/check", {
+  const response = await fetch("/checker", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
