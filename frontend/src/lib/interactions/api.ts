@@ -13,7 +13,9 @@ export async function fetchInteraction(
   rawA: string,
   rawB: string
 ): Promise<InteractionResult> {
-  const response = await fetch("/checker", {
+  const API = import.meta.env.VITE_API_URL;
+
+  const response = await fetch(`${API}/check`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
