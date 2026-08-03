@@ -42,13 +42,13 @@ export const Route = createFileRoute("/checker")({
   }),
   head: () => ({
     meta: [
-      { title: "Drug Checker — Interlace Organ Safety Dashboard" },
+      { title: "Interlace - Drug Interaction Checker" },
       {
         name: "description",
         content:
           "Interactive dashboard showing interaction severity, mechanism, affected organ systems, adverse effects and recommendations for any drug pair.",
       },
-      { property: "og:title", content: "Drug Checker — Interlace Organ Safety Dashboard" },
+      { property: "og:title", content: "Interlace - Drug Interaction Checker" },
       {
         property: "og:description",
         content:
