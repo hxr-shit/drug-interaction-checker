@@ -8,7 +8,7 @@ import { SearchCard } from "@/components/site/search-card";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Interlace — Understand Drug Interactions Before They Become Problems" },
+      { title: "Interlace — Drug Interaction Checker" },
       {
         name: "description",
         content:
